@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Jogo da Forca</title>
+        <script src="main.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Jogo da Forca</h1>
+        </header>
+        <section>
+            <div id="container">
+                <img id="image" src="./images/f0.png" title="Jogo da Forca" alt="forca"></img>
+                <p id="category"></p>
+                <div id="correctCharsContainer"></div>
+                <div id="error">
+                    <p id="errorCount" class="errors">Erros:&nbsp;</p>
+                    <p id="errors" class="errors"></p><br/>
+                    <input oninput="handleInput(this)" id="input" type="text" value=""><br/>
+                    <button onclick="window.location.reload()">Recomeçar</button>
+                </div>            
+            </div>
+        </section>
+        <footer>
+            <p>© Alunos de Tads Univel</p>
+        </footer>        
+    </body>
+</html>
