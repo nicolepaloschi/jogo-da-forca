@@ -1,98 +1,164 @@
+@font-face {
+  font-family: "dk_hangmans_delightregular";
+  src: url("../fonts/dk_hangmans_delight-webfont.woff2") format("woff2"),
+    url("../fonts/dk_hangmans_delight-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  background: rgb(47, 121, 53);
-  font: normal 15pt Arial;
+  background: #a90808;
+  font: "dk_hangmans_delight";
+  font-weight: bold;
 }
 
 header,
 footer {
-  color: white;
-  text-align: center;
-  font-style: italic;
-  font-family: "draw", sans-serif;
+  color: black;
+  font-family: "dk_hangmans_delightregular", normal;
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
 }
 
+h1 {
+  margin: 30px;
+}
+
+footer {
+  font-size: 48px;
+  padding: 0;
+  margin: 10px;
+}
+
+/*
 section {
-  background: white;
+  background: #a90808;
   border-radius: 10px;
   padding: 15px;
   width: 605px;
   margin: auto;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.363);
-}
+  box-shadow: 5px 5px 10px #c1c1c1, -5px -5px 10px #ffffff;
+}*/
 
 #container {
-  width: 600px;
-  height: 450px;
+  width: 1500px;
+  height: 1200px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 10px;
+  grid-template-areas:
+  "img img hint hint"
+  "underscore underscore underscore underscore"
+  justify-items: start;
+  align-items: center;
   border: 5px outset;
-  border-radius: 5px;
-  position: relative;
+  border-radius: 10%;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 5px 5px 10px #c1c1c1, -5px -5px 10px #ffffff;
+}
+
+img {
+  grid-area: img;
+  /*justify-self: initial;
+  align-self: initial;*/
+  width: 700px;
+  height: 700px;
+  margin: 30px 10px 10px;
 }
 
 #category {
-  position: absolute;
-  left: 380px;
-  top: 5px;
-  font-family: "draw", sans-serif;
-  font-size: 50pt;
-  color: rgb(26, 126, 42);
+  grid-area: hint;
+  justify-self: center;
+  align-self: center;
+  font-family: "dk_hangmans_delightregular";
+  font-size: 64px;
+  color: black;
 }
 
 #correctCharsContainer {
-  position: absolute;
-  top: 300px;
-  left: 10px;
+  grid-area: underscore;
+  justify-self: center;
 }
 
 .correctChar {
   width: 45px;
   font-size: 50pt;
-  font-family: "draw", sans-serif;
-  letter-spacing: 10px;
-  float: left;
+  font-family: "dk_hangmans_delightregular";
+  letter-spacing: 30px;
   text-align: center;
-}
-
-.errors {
-  font-family: "draw", sans-serif;
-  font-size: 28px;
-  display: inline-block;
-}
-
-#errors {
-  position: absolute;
-}
-
-#errorCount {
-  color: #359422;
+  margin: 2px;
 }
 
 #error {
-  position: absolute;
-  top: 150px;
-  left: 390px;
+  width: 1500px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+  "img img hint hint"
+  "underscore underscore underscore underscore"
+  justify-items: start;
+  align-items: center;
+  
+}
+
+#errorCount {
+  background-color: black;
+  align-self: center;
+  border: 1px solid;
+  justify-self: left;
+  color: white;
+  font-size: 64px;
+  margin: 10px; /* ajustar esse valor*/
+  width: 111px;
+}
+
+.errors {
+  /* display: inline-block; */
+  font-family: "dk_hangmans_delightregular";
+  font-size: 64px;
+  align-self: start;
+  /*margin: 30px;*/
+}
+
+#errors.errors {
+  grid-area: errorCount;
+  width: 200px;
+  background-color: lawngreen;
+  justify-self: end;
+  align-self: start;
 }
 
 #error input {
-  width: 50px;
+  opacity: 0;
+  grid-area: input;
+  align-self: center;
+  width: 100px;
+  height: 84px;
   border-radius: 10px;
   outline: none;
   padding: 5px;
 }
 
 button {
+  grid-area: restartButton;
   margin-top: 10px;
-  border-radius: 5px;
+  border-radius: 15%;
   padding: 15px;
   transition: 0.3s;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-  font-weight: bolder;
+  font-weight: bold;
+  font-size: 64px;
+  font-family: "dk_hangmans_delightregular";
   text-align: center;
 }
 
 button:hover {
-  background: #306e45;
+  background: #c1c1c1;
   transform: scale(1.2);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
   color: white;
