@@ -7,7 +7,7 @@
 }
 
 body {
-  background: #a90808;
+  background: gray;
   font: "dk_hangmans_delight";
   font-weight: bold;
 }
@@ -45,27 +45,26 @@ section {
   width: 1500px;
   height: 1200px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4 1fr);
-  gap: 0px;
-  justify-items: center;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  grid-gap: 10px;
   border: 5px outset;
   border-radius: 10%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   box-shadow: 5px 5px 10px #c1c1c1, -5px -5px 10px #ffffff;
 }
 
 img {
-  grid-area: 1 / 1 / 2 / 4;
-  justify-self: left;
-  width: 700px;
-  height: 700px;
-  margin: 30px 10px 10px;
+  background-color: lightgray;
+  width: 100%;
+  height: 100%;
+}
+
+aside {
+  background-color: green;
 }
 
 #category {
-  grid-area: 1 / 3 / 2 / 4;
   justify-self: center;
   font-family: "dk_hangmans_delightregular";
   font-size: 64px;
@@ -73,11 +72,10 @@ img {
 }
 
 #correctCharsContainer {
-  grid-area: 2 / 1 / 3 / 4;
+  background-color: blue;
 }
 
 .correctChar {
-  width: 45px;
   font-size: 50pt;
   font-family: "dk_hangmans_delightregular";
   letter-spacing: 30px;
@@ -85,14 +83,11 @@ img {
   margin: 2px;
 }
 
-#error {
-  /* Não sei o que fazer aqui */
-  /* Esse é o elemento pai que impede as grid-areas daqui pra frente */
+#errorContainer {
+  background-color: cyan;
 }
 
 #error > #errorCount.errors {
-  grid-area: 3 / 1 / 4 / 2;
-  background-color: cyan;
   color: white;
   font-size: 64px;
   margin: 10px; /* ajustar esse valor*/
@@ -101,7 +96,6 @@ img {
 }
 
 #error.errors {
-  grid-area: 3 / 3 / 4 / 4;
   width: 200px;
   background-color: lawngreen;
   /* justify-self: end;
@@ -115,8 +109,8 @@ img {
   /*margin: 30px;*/
 }
 
-#error input {
-  grid-area: 3 / 3 / 4 / 4;
+aside input {
+  background-color: cadetblue;
   align-self: center;
   width: 100px;
   height: 84px;

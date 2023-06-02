@@ -12,19 +12,19 @@
         <header>
             <h1>Jogo da Forca</h1>
         </header>
-        <!--<section>-->
-            <div id="container">
-                <img id="image" src="./images/f0.png" title="Jogo da Forca" alt="forca"></img>
+        <div id="container">
+            <img id="image" src="./images/f0.png" title="Jogo da Forca" alt="forca"></img>
+            <aside>
                 <h2 id="category"></h2>
-                <div id="correctCharsContainer"></div>
-                <div id="error">
-                    <div id="errorCount" class="errors">Erros:&nbsp;</div>
-                    <div id="errors" class="errors"></div>
-                    <input oninput="handleInput(this)" id="input" type="text" value="">
-                    <button onclick="window.location.reload()">Recomeçar</button>
-                </div>          
-            </div>
-        <!--</section>-->
+                <input oninput="handleInput(this)" id="input" type="text" value="">
+                <button onclick="window.location.reload()">Recomeçar</button>
+            </aside>
+            <div id="correctCharsContainer"></div>
+            <div id="errorContainer">
+                <div id="errorCount" class="errors">Erros:&nbsp;</div>
+                <div id="errors" class="errors"></div>
+            </div>          
+        </div>
         <footer>
             <p>© Alunos de Tads Univel</p>
         </footer>        
