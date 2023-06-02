@@ -7,76 +7,114 @@
 }
 
 body {
-  background: gray;
+  background: #a90808;
   font: "dk_hangmans_delight";
   font-weight: bold;
+  overflow: hidden;
 }
 
 header,
 footer {
   color: black;
   font-family: "dk_hangmans_delightregular", normal;
-  font-size: 48px;
   display: flex;
   justify-content: center;
 }
 
 h1 {
-  margin: 30px;
+  font-size: 10vh;
+  margin: 2vh;
+  letter-spacing: 5px;
 }
 
 footer {
-  font-size: 48px;
+  font-size: 3vh;
   padding: 0;
   margin: 10px;
 }
 
-/*
-section {
-  background: #a90808;
-  border-radius: 10px;
-  padding: 15px;
-  width: 605px;
-  margin: auto;
-  box-shadow: 5px 5px 10px #c1c1c1, -5px -5px 10px #ffffff;
-}*/
-
 #container {
-  width: 1500px;
-  height: 1200px;
+  width: 60vw;
+  height: 75vh;
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 3fr 1fr;
   grid-gap: 10px;
-  border: 5px outset;
-  border-radius: 10%;
   margin: 0 auto;
-  box-shadow: 5px 5px 10px #c1c1c1, -5px -5px 10px #ffffff;
 }
 
 img {
-  background-color: lightgray;
-  width: 100%;
-  height: 100%;
+  /* background-color: lightgray; */
+  width: 30vw;
+  height: 50vh;
 }
 
 aside {
-  background-color: green;
+  /* background-color: green; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
 }
 
 #category {
-  justify-self: center;
   font-family: "dk_hangmans_delightregular";
-  font-size: 64px;
+  font-size: 5vh;
   color: black;
+  align-self: center;
+  margin: 0;
+}
+
+aside label {
+  /*  line-height: 80px; */
+  font-size: 5vh;
+  font-family: "dk_hangmans_delightregular";
+  margin: 0px 20px 0px 0px;
+}
+
+aside input {
+  background-color: rgba(121, 115, 115, 0.6);
+  width: 3vw;
+
+  /* line-height: 5vh; */
+  font-size: 5.5vh;
+  border-radius: 10px;
+  outline: none;
+  /* padding: 20px; */
+  margin: 0px 0px 0px 20px;
+}
+
+input.finished {
+  display: none;
+}
+
+button {
+  background-color: transparent;
+  padding: 15px;
+  transition: 0.3s;
+  box-shadow: 2px 2px 3px rgba(68, 66, 66, 0.6);
+  font-weight: bold;
+  font-size: 5vh;
+  font-family: "dk_hangmans_delightregular";
+  /* text-align: center; */
+}
+
+button:hover {
+  background-color: black;
+  border-color: gray;
+  box-shadow: 2px 2px 5px rgba(68, 66, 66, 0.6);
+  color: #f6342d;
 }
 
 #correctCharsContainer {
-  background-color: blue;
+  /* background-color: blue; */
+  justify-self: center;
+  align-self: center;
 }
 
 .correctChar {
-  font-size: 50pt;
+  font-size: 8vh;
   font-family: "dk_hangmans_delightregular";
   letter-spacing: 30px;
   text-align: center;
@@ -84,61 +122,24 @@ aside {
 }
 
 #errorContainer {
-  background-color: cyan;
+  /* background-color: cyan; */
+  padding: 40px;
+  letter-spacing: 5px;
 }
 
 #error > #errorCount.errors {
   color: white;
-  font-size: 64px;
   margin: 10px; /* ajustar esse valor*/
-  width: 111px;
-  color: white;
+  width: 30vw;
 }
 
 #error.errors {
-  width: 200px;
-  background-color: lawngreen;
-  /* justify-self: end;
-  align-self: start; */
+  padding: 30px;
 }
 
 .errors {
   font-family: "dk_hangmans_delightregular";
   font-size: 64px;
   align-self: start;
-  /*margin: 30px;*/
-}
-
-aside input {
-  background-color: cadetblue;
-  align-self: center;
-  width: 100px;
-  height: 84px;
-  border-radius: 10px;
-  outline: none;
-  padding: 5px;
-}
-
-button {
-  grid-area: restartButton;
-  margin-top: 10px;
-  border-radius: 15%;
-  padding: 15px;
-  transition: 0.3s;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
-  font-weight: bold;
-  font-size: 64px;
-  font-family: "dk_hangmans_delightregular";
-  text-align: center;
-}
-
-button:hover {
-  background: #c1c1c1;
-  transform: scale(1.2);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-  color: white;
-}
-
-input.finished {
-  display: none;
+  font-size: 5vh;
 }

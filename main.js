@@ -158,15 +158,14 @@ const professions = [
   "Bombeiro",
   "Cabeleireiro",
   "Carpinteiro",
-  "Chef de cozinha",
   "Cientista",
   "Contador",
+  "Cozinheiro",
   "Dançarino",
   "Dentista",
   "Designer",
   "Desenhista",
   "Detetive",
-  "Deselvolvedor",
   "Economista",
   "Eletricista",
   "Enfermeiro",
@@ -245,7 +244,7 @@ function addCorrectChar(indexes, char) {
 }
 
 function addWrongChar(char) {
-  wrongChars += char;
+  wrongChars += char + " ";
   document.getElementById("errors").innerHTML = wrongChars;
 }
 
@@ -263,7 +262,7 @@ function handleCompare(char) {
     addWrongChar(char);
     changeImage();
 
-    if (wrongChars.length >= 6) {
+    if (wrongChars.length >= 12) {
       handleLoss();
     }
   }
@@ -273,7 +272,7 @@ function handleVictory() {
   hasWon = true;
 
   currentImage = document.getElementById("image").src = "./images/win.png";
-  setTimeout(() => alert("Você ganhou!\nMeus Parabéns!"), 0);
+  setTimeout(() => alert("Você ganhou!\nParabéns!"), 0);
 
   handleEndGame();
 }
@@ -283,7 +282,11 @@ function handleLoss() {
 
   handleEndGame();
 
-  setTimeout(() => alert('Você perdeu!\nA resposta certa é "' + sortedWord), 0);
+  setTimeout(
+    () =>
+      alert("Você perdeu!\nA resposta certa é: " + sortedWord.toUpperCase()),
+    0
+  );
 }
 
 function sanitizeChar(char) {
@@ -346,7 +349,7 @@ function handleKey(key) {
 
   if ((key >= 65 && key <= 90) || (key >= 97 && key <= 122)) {
     if (correctChars.indexOf(char) >= 0 || wrongChars.indexOf(char) >= 0) {
-      alert('Você já digitou a tecla "' + char + '"');
+      alert("Você já digitou a letra " + char.toUpperCase() + ".");
     } else {
       handleCompare(char);
     }
