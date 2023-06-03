@@ -13,16 +13,14 @@
             <h1>Jogo da Forca</h1>
         </header>
         <div id="container">
-            <img id="image" src="./images/f0.png" title="Jogo da Forca" alt="forca"></img>
-            <aside>
+            <div id="imageContainer">
                 <h2 id="category"></h2>
-                <label for="input">Digite uma letra:<input oninput="handleInput(this)" id="input" type="text" value=""></label>
-                <button onclick="window.location.reload()">Recomeçar</button>
-            </aside>
+                <h2 id="guessesLeft">Tentativas restantes:<br/> X X X X X X</h2>
+            </div>
             <div id="correctCharsContainer"></div>
-            <div id="errorContainer">
-                <div id="errorCount" class="errors">Erros:&nbsp;</div>
-                <div id="errors" class="errors"></div>
+            <div id="operationsContainer">
+                <div id="keyboard"></div>
+                <button onclick="window.location.reload()">Recomeçar</button>
             </div>          
         </div>
         <footer>
