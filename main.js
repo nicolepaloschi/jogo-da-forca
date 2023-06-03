@@ -195,18 +195,21 @@ const professions = [
   "Veterinário",
 ];
 
+const alphabet = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+  'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+];
+
 const options = [animals, countries, fruits, professions];
 const category = ["Animal", "País", "Fruta", "Profissão"];
 
 let currentImage = 0;
 
 let correctChars = "";
-let wrongChars = "";
-
-let hasWon = false;
-let hasLost = false;
 
 let isComplete = false;
+
+let guessesLeft = 6;
 
 const sortedCategoryIndex = parseInt(Math.random() * options.length);
 const sortedWordIndex = parseInt(
@@ -214,9 +217,21 @@ const sortedWordIndex = parseInt(
 );
 const sortedWord = options[sortedCategoryIndex][sortedWordIndex];
 
-function changeImage() {
+function changeImage(path) {
+  const imageContainerElement = document.getElementById("imageContainer");
+  imageContainerElement.style.background = `url('./images/${path}.png') center center`;
+  imageContainerElement.style['background-size'] = "contain";
+  imageContainerElement.style['background-repeat'] = "no-repeat";
+}
+
+function handleNextErrorImage() {
   currentImage++;
-  document.getElementById("image").src = "./images/f" + currentImage + ".png";
+
+  changeImage(`f${currentImage}`);
+}
+
+function handleVictory() {
+  changeImage("win");
 }
 
 function findMatchIndexes(char) {
@@ -243,9 +258,10 @@ function addCorrectChar(indexes, char) {
   }
 }
 
-function addWrongChar(char) {
-  wrongChars += char + " ";
-  document.getElementById("errors").innerHTML = wrongChars;
+function handleWrongGuess() {
+  guessesLeft--;
+  const guessesLeftText = new Array(guessesLeft).fill('X').join(' ');
+  document.getElementById("guessesLeft").innerHTML = "Tentativas restantes: <br/>" + guessesLeftText;
 }
 
 function handleCompare(char) {
@@ -259,34 +275,19 @@ function handleCompare(char) {
       handleVictory();
     }
   } else {
-    addWrongChar(char);
-    changeImage();
+    handleWrongGuess();
+    handleNextErrorImage();
 
-    if (wrongChars.length >= 12) {
+    if (guessesLeft === 0) {
       handleLoss();
     }
   }
 }
 
-function handleVictory() {
-  hasWon = true;
-
-  currentImage = document.getElementById("image").src = "./images/win.png";
-  setTimeout(() => alert("Você ganhou!\nParabéns!"), 0);
-
-  handleEndGame();
-}
-
 function handleLoss() {
-  hasLost = true;
-
-  handleEndGame();
-
-  setTimeout(
-    () =>
-      alert("Você perdeu!\nA resposta certa é: " + sortedWord.toUpperCase()),
-    0
-  );
+  for (let i = 0; i < sortedWord.length; i++) {
+    document.getElementById("correctWords_" + i).innerHTML = sortedWord[i];
+  }
 }
 
 function sanitizeChar(char) {
@@ -336,43 +337,28 @@ function sanitizeChar(char) {
   }
 }
 
-function handleKey(key) {
-  const char = String.fromCharCode(key).toLowerCase();
-
-  if (hasLost) {
-    alert("Você já perdeu o jogo!");
-  }
-
-  if (hasWon) {
-    alert("Você já venceu o jogo!");
-  }
-
-  if ((key >= 65 && key <= 90) || (key >= 97 && key <= 122)) {
-    if (correctChars.indexOf(char) >= 0 || wrongChars.indexOf(char) >= 0) {
-      alert("Você já digitou a letra " + char.toUpperCase() + ".");
-    } else {
-      handleCompare(char);
-    }
-  } else {
-    alert("Caractere inválido! Insira uma letra.");
-  }
+function handleClick(char) {
+  handleCompare(char);
 }
 
-function handleInput(element) {
-  handleKey(sanitizeChar(element.value).charCodeAt(0));
-  element.value = "";
-}
+function addKeyboard() {
+  const keyboardElement = document.getElementById("keyboard");
 
-function handleEndGame() {
-  document.removeEventListener("keydown", handleKeyDown);
+  for (let i = 0; i < alphabet.length; i++) {
+    const button = document.createElement('button');
+    button.innerText = alphabet[i];
+    button.style['margin-right'] = '16px';
+    button.style['margin-bottom'] = '16px';
+    button.style.width = '48px';
 
-  document.getElementById("input").classList.add("finished");
-}
+    button.onclick = () => {
+      handleClick(alphabet[i].toLowerCase());
+      button.disabled = true;
+      button.classList.add('disabled');
+    }; 
 
-function handleKeyDown() {
-  const inputElement = document.getElementById("input");
-
-  inputElement.focus();
+    keyboardElement.appendChild(button);
+  }
 }
 
 function onLoad() {
@@ -382,12 +368,12 @@ function onLoad() {
   const correctCharsContainerElement = document.getElementById(
     "correctCharsContainer"
   );
-  for (let i = 0; i < sortedWord.length; i++) {
+  for (let i = 0; i < sortedWord.length; i++) {    
     correctCharsContainerElement.innerHTML +=
       '<span id="correctWords_' + i + '" class="correctChar">_</span>';
   }
 
-  document.addEventListener("keydown", handleKeyDown);
+  addKeyboard();
 }
 
 window.addEventListener("load", onLoad);
